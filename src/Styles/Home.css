@@ -1,0 +1,36 @@
+.home-container {
+    text-align: center;
+    margin-top: 18%;
+    margin-left: -60%;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  .home-btn {
+    background-color: rgb(11, 108, 192);
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .title{
+    color: rgb(0, 26, 255);
+  }
+  p{
+    display: block;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .footer-part{
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8.64%;
+    width: 99.45%;
+    background-color: blue;
+    color: white;
+  }
+  

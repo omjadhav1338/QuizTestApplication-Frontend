@@ -1,0 +1,310 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+/* 
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+/*Css for compoenents*/
+
+
+
+
+
+
+/* Navbar Styles 
+.navbar {
+  background-color: #ffffff;
+  padding: 0px;
+  margin: 0px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+}
+
+
+.container {
+  width: 100%;
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;list-style-type: none;
+}
+
+
+
+.nav-item {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.nav-item a {
+  color: #ffffff;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* .nav-item a:hover {
+  color: #ffffff;
+} */
+
+/* Responsive Styles 
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  .nav-item {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+
+/*For Admin*/
+
+/* General Styles 
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Admin Page Styles 
+.container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+
+
+/* Responsive Styles *
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  nav a {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/*For add Quiz*/
+
+/* General Styles *
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+}
+
+/* Container Styles *
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Card Styles *
+.card {
+  border: none;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 8px 8px 0 0;
+  text-align: center;
+}
+
+.card-header h4 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form Elements Styles *
+.label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.subject-dropdown,
+textarea,
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
+}
+
+button[type="button"] {
+  margin-top: 0.5rem;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Choices and Answers Styles *
+.choice-group,
+.correct-answer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.choice-group input,
+.correct-answer-group input {
+  flex: 1;
+  padding: 0.75rem;
+}
+
+.choice-group button,
+.correct-answer-group button {
+  align-self: flex-start;
+}
+
+.correct-answer-group button {
+  margin-top: 0.5rem;
+}
+
+/* Responsive Styles *
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+h4{
+  width: 100%;
+} */
