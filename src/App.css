@@ -47,6 +47,7 @@ body{
     background-repeat: no-repeat;
     background-position: 43rem 10rem;
     height: 200px;
+    background-attachment: fixed;
 }
 
 .home{

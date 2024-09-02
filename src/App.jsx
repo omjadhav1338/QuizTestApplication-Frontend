@@ -15,6 +15,7 @@ import StudentNavbar from './Components/StudentNavbar';
 import SignupForm from './Components/SignupForm'
 import Profile from './Components/Profile';
 import StartQuiz from './Components/StartQuiz';
+import QuizTest from './Components/QuizTest';
 
 function App() {
   return (
@@ -32,12 +33,13 @@ function App() {
             <Route path="/about" element={<About/>}/>
             <Route path="/admin/add-quiz" element={<AddQuiz />} />
             <Route path="/admin/all-quizzes" element={<QuizList />} />
-            <Route path="/update-quiz/:id" element={<UpdateQuiz/>}/>
+            <Route path="/admin/update-quiz/:id" element={<UpdateQuiz/>}/>
             <Route path="/admin/home" element={<AdminPage />} />
             <Route path='/student-signin' element={<StudentPage/>}/>
             <Route path='/student-signup' element={<SignupForm/>}/>
             <Route path='/student/profile' element={<Profile/>}/>
             <Route path='/student/start-quiz' element={<StartQuiz/>}/>
+            <Route path='/student/quiz-test' element={<QuizTest/>}/>
           </Routes>
         </div>
       </div>

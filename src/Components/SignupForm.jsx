@@ -12,22 +12,29 @@ export default function SignUpForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (password !== confirmPassword) {
             toast.error('Passwords do not match!');
             return;
         }
-
+    
         try {
             const response = await axios.post('http://localhost:8080/api/save-student', { fullName, email, password });
             console.log('User created:', response.data);
-            alert('User created successfully!');
-            navigate("/student-signin");
+            toast.success("Congratulations! Your account is created.", {
+                autoClose: 3000,
+            });
+            setTimeout(() => {
+                navigate("/student-signin");
+            }, 4000);
         } catch (error) {
             console.error('There was an error!', error);
-            toast.error('This email address already exist');
+            toast.error('This email address already exists', {
+                autoClose: 3000,
+            });
         }
     };
+    
 
     return (
         <div className="background">

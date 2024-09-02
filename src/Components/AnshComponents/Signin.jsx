@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import './Signin.css'
 
 export default function Signin() {
@@ -16,10 +16,16 @@ export default function Signin() {
             const response = await axios.post('http://localhost:8080/api/login', { email, password });
             console.log('User logged in:', response.data);
             localStorage.setItem('studentEmail', email);
-            alert("Login successful!")
-            navigate('/student/profile');
+            toast.success("Welcome! Logged in successfully", {
+                autoClose: 3000,
+            });
+            setTimeout(() => {
+                navigate('/student/profile');
+            }, 3000);
         } catch (error) {
-            toast.error('Invalid email or password.'.error);
+            toast.error('Invalid email or password.', {
+                autoClose: 3000,
+            });
         }
     };
 
@@ -67,13 +73,7 @@ export default function Signin() {
 
                     <div className="options">
                         <div className="checkbox-group">
-                        <input
-                            id="remember_me"
-                            name="remember_me"
-                            type="checkbox"
-                            className="checkbox"
-                        />
-                        <label htmlFor="remember_me" className="checkbox-label">Remember me</label>
+                        
                         </div>
                         <div className="forgot-password">
                         <a href="#" className="link">Forgot your password?</a>
@@ -103,6 +103,7 @@ export default function Signin() {
                 </div>
                 </div>
             </div>
+            <ToastContainer /> 
 </div>
 
     );

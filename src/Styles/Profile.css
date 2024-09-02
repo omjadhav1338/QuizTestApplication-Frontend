@@ -14,6 +14,11 @@
   }
   
   /* Profile Header */
+
+  .profile-header-main{
+    display: flex;
+    flex-direction: row;
+  }
   .profile-header {
     display: flex;
     align-items: center;
@@ -33,7 +38,7 @@
   }
   
   .initials {
-    color: #ffffff;
+    color: #ffffff75;
     font-size: 2.5rem;
     font-weight: bold;
   }
@@ -54,8 +59,11 @@
   /* Profile Actions */
   .profile-actions {
     display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    flex-direction: row-reverse;
+    padding-left: 56%;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
   }
   
   .logout-btn,
@@ -67,6 +75,8 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    width: fit-content;
+    height: fit-content;
   }
   
   .logout-btn {
@@ -105,4 +115,27 @@
       margin-bottom: 1rem;
     }
   }
-  
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.results-table th, .results-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.results-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.results-table tr:hover {
+    background-color: #f1f1f1;
+}

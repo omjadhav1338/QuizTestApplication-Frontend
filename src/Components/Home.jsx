@@ -28,7 +28,7 @@ const Home = () => {
         </div>
       </div>
       <div className='footer-part'>
-        <footer>Copyright © 2024 All Rights Reserved | SCS</footer>
+        <p>Copyright © 2024 All Rights Reserved | SCS</p>
       </div>
     </div>
   );

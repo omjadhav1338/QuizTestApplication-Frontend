@@ -105,7 +105,7 @@ const UpdateQuiz = () => {
         setSubjects((prevSubjects) => [...prevSubjects, response.data]);
         setQuiz((prevQuiz) => ({
           ...prevQuiz,
-          subject: response.data.id
+          subject: response.data.subject
         }));
         setNewSubject('');
         setShowNewSubjectInput(false);
@@ -152,7 +152,7 @@ const UpdateQuiz = () => {
           >
             <option value="">Select a Subject</option>
             {subjects.map((subject) => (
-              <option key={subject.id} value={subject.id}>
+              <option key={subject.id} value={subject.name}>
                 {subject.name}
               </option>
             ))}

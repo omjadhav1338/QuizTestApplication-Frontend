@@ -36,7 +36,7 @@ const QuizList = () => {
   };
 
   const handleUpdate = (id) => {
-    navigate(`/update-quiz/${id}`);
+    navigate(`/admin/update-quiz/${id}`);
   };
 
 

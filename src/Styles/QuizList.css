@@ -5,7 +5,7 @@
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background-color: #ffffff00;
+    background-color: #ffffffad;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
   
@@ -51,12 +51,12 @@
   }
 
 
-  .update{
-    background-color: #3835dc;
+  .btn.update{
+    background-color: #0400ff;
     color: rgb(255, 255, 255);
     margin-left: 10px;
   }
-  .delete{
+  .btn.delete{
     background-color: #dc3545;
     color: rgb(255, 255, 255);
     margin-left: 10px;
