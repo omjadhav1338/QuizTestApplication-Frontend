@@ -36,15 +36,24 @@ function QuizTest() {
     const calculateScore = () => {
         let score = 0;
         questions.forEach(question => {
-            if (question.correctChoice.length === 1) {
-                if (question.correctChoice[0].replace(/\s/g, '')===answers[question.id].replace(/\s/g, '')) 
-                {
-                    score += 1;
-                    // alert(score);
-                }
+            if (question.correctChoice.length === 1 && question.correctChoice[0].replace(/\s/g, '') === answers[question.id]?.replace(/\s/g, '')) {
+                score += 1;
             }
         });
         return score;
+    };
+
+    const prepareResultDetails = () => {
+        return questions.map(question => {
+            const userAnswer = answers[question.id] || "Not Answered";
+            const correctAnswer = question.correctChoice.join(', ');
+            return {
+                questionText: question.question,
+                choices: question.choices,
+                userAnswer,
+                correctAnswer
+            };
+        });
     };
 
     const handleSubmit = async () => {
@@ -53,7 +62,8 @@ function QuizTest() {
             subject: subject,
             questionCount: questions.length,
             score: calculateScore(),
-            testDate: new Date()
+            testDate: new Date(),
+            answerDetails: prepareResultDetails()
         };
         await axios.post('http://localhost:8080/api/quizzes/submit', result);
         navigate('/student/profile');
@@ -99,13 +109,15 @@ function QuizTest() {
                         </div>
                     ))}
                     <div className="navigation-buttons">
-                        {currentQuestionIndex !== 0 ? (<button className="btn nav-button" onClick={handlePrevious} disabled={currentQuestionIndex === 0}>
-                            Previous
-                        </button>) : (<></>)}
+                        {currentQuestionIndex !== 0 && (
+                            <button className="btn nav-button" onClick={handlePrevious}>
+                                Previous
+                            </button>
+                        )}
                         {currentQuestionIndex === questions.length - 1 ? (
                             <button className="btn submit-button" onClick={handleSubmit}>Submit Test</button>
                         ) : (
-                            <button className="btn nav-button" onClick={handleNext} disabled={currentQuestionIndex === questions.length - 1}>
+                            <button className="btn nav-button" onClick={handleNext}>
                                 Next
                             </button>
                         )}

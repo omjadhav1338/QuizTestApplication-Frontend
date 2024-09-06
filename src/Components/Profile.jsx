@@ -10,7 +10,7 @@ export default function Profile() {
 
     useEffect(() => {
         const fetchStudent = async () => {
-            const email = localStorage.getItem('studentEmail');
+            const email = sessionStorage.getItem('studentEmail');
             if (!email) {
                 navigate('/student-signin');
                 return;
@@ -40,7 +40,7 @@ export default function Profile() {
     }, [navigate]);
 
     const handleLogout = () => {
-        localStorage.removeItem('studentEmail');
+        sessionStorage.clear();
         navigate('/student-signin');
     };
 
@@ -71,20 +71,20 @@ export default function Profile() {
 
     return (
         <div className="profile-container">
-        <div className="profile-header-main">
-            <div className="profile-header">
-                <div className="profile-picture">
-                    <div className="initials">{getInitials(student.fullName)}</div>
+            <div className="profile-header-main">
+                <div className="profile-header">
+                    <div className="profile-picture">
+                        <div className="initials">{getInitials(student.fullName)}</div>
+                    </div>
+                    <div className="profile-info">
+                        <h2>{student.fullName}</h2>
+                        <p>{student.email}</p>
+                    </div>
                 </div>
-                <div className="profile-info">
-                    <h2>{student.fullName}</h2>
-                    <p>{student.email}</p>
+                <div className="profile-actions">
+                    <button onClick={handleLogout} className="logout-btn">Logout</button>
+                    <button className="notes-btn" onClick={() => navigate('/notes')}>Notes</button>
                 </div>
-            </div>
-            <div className="profile-actions">
-                <button onClick={handleLogout} className="logout-btn">Logout</button>
-                <button className="notes-btn" onClick={() => navigate('/notes')}>Notes</button>
-            </div>
             </div>
             <hr style={{ width: "100%", border: "1px solid black" }} />
             <div>
@@ -98,6 +98,7 @@ export default function Profile() {
                             <th>Subject</th>
                             <th>Question Count</th>
                             <th>Score</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,6 +110,14 @@ export default function Profile() {
                                 <td>{result.subject}</td>
                                 <td>{result.questionCount}</td>
                                 <td>{result.score}</td>
+                                <td>
+                                    <button
+                                        onClick={() => navigate(`/student/results/detail/${result.id}`)}
+                                        className="view-details-btn"
+                                    >
+                                        View Details
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

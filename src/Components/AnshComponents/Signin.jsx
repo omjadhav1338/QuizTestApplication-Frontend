@@ -15,7 +15,7 @@ export default function Signin() {
         try {
             const response = await axios.post('http://localhost:8080/api/login', { email, password });
             console.log('User logged in:', response.data);
-            localStorage.setItem('studentEmail', email);
+            sessionStorage.setItem('studentEmail', email);
             toast.success("Welcome! Logged in successfully", {
                 autoClose: 3000,
             });

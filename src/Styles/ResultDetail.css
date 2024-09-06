@@ -1,0 +1,27 @@
+/* ResultDetail.css */
+.result-detail-container {
+    margin: 20px;
+}
+
+.result-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-detail-table th,
+.result-detail-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.result-detail-table th {
+    background-color: #f2f2f2;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}

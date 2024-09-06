@@ -16,6 +16,7 @@ import SignupForm from './Components/SignupForm'
 import Profile from './Components/Profile';
 import StartQuiz from './Components/StartQuiz';
 import QuizTest from './Components/QuizTest';
+import ResultDetail from './Components/ResultDetail';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path='/student/profile' element={<Profile/>}/>
             <Route path='/student/start-quiz' element={<StartQuiz/>}/>
             <Route path='/student/quiz-test' element={<QuizTest/>}/>
+            <Route path='/student/results/detail/:id' element={<ResultDetail/>}/>
           </Routes>
         </div>
       </div>
