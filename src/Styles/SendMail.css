@@ -1,0 +1,58 @@
+/* Container for the entire email sending section */
+.send-email-container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 20px;
+    margin-top: 220px;
+    margin-left: 100px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title styling */
+  .send-email-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Container for the email input field */
+  .email-input-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the input field */
+  .email-input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Container for the send button */
+  .send-button-container {
+    text-align: center;
+  }
+  
+  /* Styling for the send button */
+  .send-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button:hover {
+    background-color: #45a049;
+  }
+  

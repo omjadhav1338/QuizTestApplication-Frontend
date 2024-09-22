@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../Styles/QuizTest.css";
+import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 function QuizTest() {
     const location = useLocation();
@@ -11,23 +13,24 @@ function QuizTest() {
     const [answers, setAnswers] = useState({});
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [timeLeft, setTimeLeft] = useState(numQuestions * 60);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         const fetchQuestions = async () => {
             const response = await axios.get(`http://localhost:8080/api/quizzes?subject=${subject}&limit=${numQuestions}&random=true`);
-            setQuestions(response.data);
+            const questionCount = response.data;
+            setTimeLeft(questionCount.length * 60);
+            setQuestions(questionCount);
         };
         fetchQuestions();
     }, [subject, numQuestions]);
 
     useEffect(() => {
-        if (timeLeft > 0) {
+        if (timeLeft > 0 && !isSubmitting) {
             const timerId = setInterval(() => setTimeLeft(timeLeft - 1), 1000);
             return () => clearInterval(timerId);
-        } else {
-            handleSubmit();
         }
-    }, [timeLeft]);
+    }, [timeLeft, isSubmitting]);
 
     const handleChange = (questionId, value) => {
         setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -43,30 +46,67 @@ function QuizTest() {
         return score;
     };
 
-    const prepareResultDetails = () => {
-        return questions.map(question => {
-            const userAnswer = answers[question.id] || "Not Answered";
-            const correctAnswer = question.correctChoice.join(', ');
-            return {
+    const handleSubmit = async () => {
+        const confirmation = await Swal.fire({
+            title: 'Confirm Submission',
+            text: "Do you want to submit the test?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, submit it!',
+            cancelButtonText: 'No, cancel'
+        });
+
+        if (confirmation.isConfirmed) {
+            setIsSubmitting(true);
+            clearInterval(); // Stop the timer
+
+            const score = calculateScore();
+            const answerDetails = questions.map(question => ({
                 questionText: question.question,
                 choices: question.choices,
-                userAnswer,
-                correctAnswer
-            };
-        });
-    };
+                userAnswer: answers[question.id] || '',
+                correctAnswer: question.correctChoice[0]
+            }));
 
-    const handleSubmit = async () => {
-        const result = {
-            studentEmail: localStorage.getItem('studentEmail'),
-            subject: subject,
-            questionCount: questions.length,
-            score: calculateScore(),
-            testDate: new Date(),
-            answerDetails: prepareResultDetails()
-        };
-        await axios.post('http://localhost:8080/api/quizzes/submit', result);
-        navigate('/student/profile');
+            const result = {
+                studentEmail: sessionStorage.getItem("studentEmail"),
+                subject: subject,
+                questionCount: questions.length,
+                answerDetails: JSON.stringify(answerDetails),
+                score: score
+            };
+
+            try {
+                const response = await axios.post('http://localhost:8080/student/result/save-quiz-result', result);
+
+                const subject1 = "To inform test completed and show result";
+                const body = `Congratulation!! You have completed the test. Information is as follows:
+                            \nSubject: ${subject}
+                            \nNumber of questions: ${questions.length}
+                            \nScore: ${score}/${questions.length}
+                            \nYou can see the details of your test by clicking on the following link:
+                            \nhttp://localhost:5173/results/detail/${response.data.id}`;
+
+                await axios.post('http://localhost:8080/api/sendsignupmail', {
+                    mail: sessionStorage.getItem("studentEmail"),
+                    subject: subject1,
+                    body
+                });
+
+                // Show success message
+                await Swal.fire({
+                    title: 'Success!',
+                    text: 'Test submitted successfully!',
+                    icon: 'success'
+                });
+
+                navigate('/student/profile');
+            } catch (error) {
+                toast.error('Error submitting test. Please try again.');
+            } finally {
+                setIsSubmitting(false);
+            }
+        }
     };
 
     const handleNext = () => {
@@ -115,7 +155,9 @@ function QuizTest() {
                             </button>
                         )}
                         {currentQuestionIndex === questions.length - 1 ? (
-                            <button className="btn submit-button" onClick={handleSubmit}>Submit Test</button>
+                            <button className="btn submit-button" onClick={handleSubmit} disabled={isSubmitting}>
+                                {isSubmitting ? 'Submitting...' : 'Submit Test'}
+                            </button>
                         ) : (
                             <button className="btn nav-button" onClick={handleNext}>
                                 Next

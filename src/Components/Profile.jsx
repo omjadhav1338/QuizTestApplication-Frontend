@@ -2,23 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Styles/Profile.css';
+import Swal from 'sweetalert2'; // Import SweetAlert
 
 export default function Profile() {
     const [student, setStudent] = useState(null);
     const [results, setResults] = useState([]);
+    const [email, setEmail] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchStudent = async () => {
-            const email = sessionStorage.getItem('studentEmail');
-            if (!email) {
+            const studentEmail = sessionStorage.getItem('studentEmail');
+            if (!studentEmail) {
                 navigate('/student-signin');
                 return;
             }
 
+            setEmail(studentEmail); // Save email to state
+
             try {
                 const response = await axios.get('http://localhost:8080/api/student', {
-                    params: { email }
+                    params: { email: studentEmail }
                 });
                 setStudent(response.data);
             } catch (error) {
@@ -27,21 +31,38 @@ export default function Profile() {
             }
         };
 
+        fetchStudent();
+    }, [navigate]);
+
+    useEffect(() => {
         const fetchResults = async () => {
+            if (!email) return; // Ensure email is available
+
             try {
-                const response = await axios.get(`http://localhost:8080/api/quizzes/results/${localStorage.getItem('studentEmail')}`);
+                const response = await axios.get(`http://localhost:8080/api/quizzes/results/${email}`);
                 setResults(response.data);
             } catch (error) {
                 console.error('Error fetching quiz results:', error);
             }
         };
-        fetchStudent();
-        fetchResults();
-    }, [navigate]);
 
-    const handleLogout = () => {
-        sessionStorage.clear();
-        navigate('/student-signin');
+        fetchResults();
+    }, [email]); // Depend on email so this effect runs when email is set
+
+    const handleLogout = async () => {
+        const confirmation = await Swal.fire({
+            title: 'Confirm Logout',
+            text: "Are you sure you want to logout?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, logout!',
+            cancelButtonText: 'No, cancel'
+        });
+
+        if (confirmation.isConfirmed) {
+            sessionStorage.clear();
+            navigate('/student-signin');
+        }
     };
 
     const getInitials = (fullName) => {
@@ -83,7 +104,7 @@ export default function Profile() {
                 </div>
                 <div className="profile-actions">
                     <button onClick={handleLogout} className="logout-btn">Logout</button>
-                    <button className="notes-btn" onClick={() => navigate('/notes')}>Notes</button>
+                    <button className="notes-btn" onClick={() => navigate('/student/notes')}>Notes</button>
                 </div>
             </div>
             <hr style={{ width: "100%", border: "1px solid black" }} />
@@ -112,7 +133,7 @@ export default function Profile() {
                                 <td>{result.score}</td>
                                 <td>
                                     <button
-                                        onClick={() => navigate(`/student/results/detail/${result.id}`)}
+                                        onClick={() => navigate(`/results/detail/${result.id}`)}
                                         className="view-details-btn"
                                     >
                                         View Details

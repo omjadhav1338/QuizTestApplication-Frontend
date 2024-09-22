@@ -53,7 +53,7 @@
   .profile-info p {
     margin: 0.5rem 0 0;
     font-size: 1rem;
-    color: #777;
+    color: #ffffff;
   }
   
   /* Profile Actions */
@@ -139,8 +139,15 @@
 .results-table tr:hover {
     background-color: #f1f1f1;
 }
+
 .view-details-btn{
-  padding: 9px;
-    background-color: #a18400;
+    padding: 9px;
+    background-color: #d87a00;
     color: #ffffff;
+}
+
+.view-details-btn:hover{
+    background-color: #ff9100;
+    color: #000000;
+    transform: translateY(-2px);
 }

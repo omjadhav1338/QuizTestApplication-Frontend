@@ -1,8 +1,8 @@
-// QuizSelection.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../Styles/StartQuiz.css'
+import Swal from 'sweetalert2';
+import '../Styles/StartQuiz.css';
 
 const StartQuiz = () => {
   const [subjects, setSubjects] = useState([]);
@@ -23,13 +23,24 @@ const StartQuiz = () => {
   }, []);
 
   const handleStartTest = () => {
-    navigate(`/student/quiz-test`, {
-        state: {
+    Swal.fire({
+      title: 'Confirm Test Start',
+      text: "Do you want to start the test?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, start it!',
+      cancelButtonText: 'No, cancel!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate(`/student/quiz-test`, {
+          state: {
             subject: selectedSubject,
             numQuestions: numberOfQuestions
-        }
+          }
+        });
+      }
     });
-};
+  };
 
   return (
     <div className="quiz-container">
@@ -60,7 +71,6 @@ const StartQuiz = () => {
       </div>
       <button className="start-test-button" onClick={handleStartTest}>Start Test</button>
     </div>
-
   );
 };
 

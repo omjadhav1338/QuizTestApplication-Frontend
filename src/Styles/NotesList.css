@@ -1,0 +1,106 @@
+/* General Styles */
+.notes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .note-card {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .note-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .note-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .note-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Delete Button - Red */
+  .note-card .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .note-card .delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Update Button - Green */
+  .note-card .update-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .note-card .update-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* View Button - Blue */
+  .note-card .view-btn {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    margin-right: 10px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .note-card .view-btn-student {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    width: 100%;
+    margin-right: 10px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .note-card .view-btn:hover {
+    background-color: #138496;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .note-card img {
+      height: 120px;
+    }
+  
+    .note-card h3 {
+      font-size: 1rem;
+    }
+  }
+  

@@ -76,30 +76,13 @@ export default function Signin() {
                         
                         </div>
                         <div className="forgot-password">
-                        <a href="#" className="link">Forgot your password?</a>
+                        <a href="/student/sendmail" className="link">Forgot your password?</a>
                         </div>
                     </div>
 
                     <button type="submit" className="submit-btn">Sign in</button>
                     </form>
-
-                    <div className="divider">
-                    <div className="line"></div>
-                    <div className="or-text">Or continue with</div>
-                    <div className="line"></div>
-                    </div>
-
-                    <div className="social-buttons">
-                    <a href="#" className="social-btn">
-                        <img className="social-icon" src="https://www.svgrepo.com/show/512120/facebook-176.svg" alt="Facebook" />
-                    </a>
-                    <a href="#" className="social-btn">
-                        <img className="social-icon" src="https://www.svgrepo.com/show/513008/twitter-154.svg" alt="Twitter" />
-                    </a>
-                    <a href="#" className="social-btn">
-                        <img className="social-icon" src="https://www.svgrepo.com/show/506498/google.svg" alt="Google" />
-                    </a>
-                    </div>
+                    
                 </div>
                 </div>
             </div>

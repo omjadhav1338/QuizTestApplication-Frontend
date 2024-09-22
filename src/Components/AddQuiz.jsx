@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Styles/AddQuiz.css';
+import Swal from 'sweetalert2';
 import { useNavigate, useParams } from 'react-router-dom';
+import withReactContent from 'sweetalert2-react-content';
 
 const AddQuiz = () => {
+    const MySwal = withReactContent(Swal);
     const {id} = useParams();
     const navigate = useNavigate();
-  const [quiz, setQuiz] = useState({
+    const [quiz, setQuiz] = useState({
     question: '',
     subject: '',
-    questionType: 'Single Answer',
     choices: [''],
     correctChoice: ['']
-  });
-  const [subjects, setSubjects] = useState([]);
-  const [newSubject, setNewSubject] = useState('');
-  const [showNewSubjectInput, setShowNewSubjectInput] = useState(false);
+    });
+    const [subjects, setSubjects] = useState([]);
+    const [newSubject, setNewSubject] = useState('');
+    const [showNewSubjectInput, setShowNewSubjectInput] = useState(false);
 
   useEffect(() => {
     fetchSubjects();
@@ -97,13 +99,28 @@ const AddQuiz = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:8080/api/quizzes/add-new-quiz', quiz);
-      alert('Quiz added successfully!');
-      navigate('/admin/all-quizzes');
-      console.log(response.data);
+  
+      MySwal.fire({
+        title: 'Quiz Created!',
+        text: 'Your quiz has been created successfully.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      }).then(() => {
+        navigate('/admin/all-quizzes');
+      });
+  
     } catch (error) {
       console.error('There was an error adding the quiz!', error);
+  
+      MySwal.fire({
+        title: 'Error!',
+        text: 'There was an issue creating the quiz. Please try again.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
   };
+  
 
   return (
     <div className="add-quiz-container">
@@ -153,19 +170,6 @@ const AddQuiz = () => {
             </button>
           </div>
         )}
-        <div className="form-group">
-          <label className="form-label">Question Type:</label>
-          <select
-            name="questionType"
-            className="form-select"
-            value={quiz.questionType}
-            onChange={handleChange}
-            required
-          >
-            <option value="Single Answer">Single Answer</option>
-            <option value="Multiple Answer">Multiple Answer</option>
-          </select>
-        </div>
         <div className="form-group">
           <label className="form-label">Choices:</label>
           {quiz.choices.map((choice, index) => (

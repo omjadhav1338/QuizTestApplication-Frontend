@@ -31,8 +31,10 @@
   
   /* Labels */
   .form-label {
-    font-size: 16px;
+    font-size: 14px;
+    color: #cecece;
     margin-bottom: 5px;
+    display: block;
   }
   
   /* Inputs */

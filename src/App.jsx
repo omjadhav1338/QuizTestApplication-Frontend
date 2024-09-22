@@ -17,6 +17,16 @@ import Profile from './Components/Profile';
 import StartQuiz from './Components/StartQuiz';
 import QuizTest from './Components/QuizTest';
 import ResultDetail from './Components/ResultDetail';
+import ResultNavbar from './Components/ResultNavbar';
+import StudentList from './Components/StudentList';
+import SendEmail from './Components/SendEmail';
+import ResetPassword from './Components/ResetPassword';
+import AddNotes from './Components/AddNotes';
+import NotesList from './Components/NotesList';
+import UpdateNotes from './Components/UpdateNotes';
+import ProfileOnAdmin from './Components/ProfileOnAdmin';
+import NotesForStudents from './Components/NotesForStudents';
+
 
 function App() {
   return (
@@ -26,6 +36,7 @@ function App() {
         <Route path="/admin/*" element={<AdminNavbar />} />
         <Route path="/*" element={<Navbar />} />
         <Route path="/student/*" element={<StudentNavbar/>}/>
+        <Route path='/results/*' element={<ResultNavbar/>}/>
       </Routes>
         <div className="content">
           <Routes>
@@ -41,7 +52,17 @@ function App() {
             <Route path='/student/profile' element={<Profile/>}/>
             <Route path='/student/start-quiz' element={<StartQuiz/>}/>
             <Route path='/student/quiz-test' element={<QuizTest/>}/>
-            <Route path='/student/results/detail/:id' element={<ResultDetail/>}/>
+            <Route path='/results/detail/:resultId' element={<ResultDetail/>}/>
+            <Route path='/student/sendmail' element={<SendEmail/>}/>
+            <Route path="/admin/student-list" element={<StudentList/>}/>
+            <Route path='/student/reset-password/:email' element={<ResetPassword/>}/>
+            <Route path="/admin/add-notes" element={<AddNotes />} />
+            <Route path="/admin/all-notes" element={<NotesList />} />
+            <Route path="/admin/update-notes/:id" element={<UpdateNotes />} />
+            <Route path="/admin/student-list" element={<StudentList />} />
+            <Route path="/admin/view-student-profile/:id" element={<ProfileOnAdmin />} />
+            <Route path="/student/notes" element={<NotesForStudents />} />
+            
           </Routes>
         </div>
       </div>

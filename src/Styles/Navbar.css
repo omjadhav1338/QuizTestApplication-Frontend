@@ -64,3 +64,24 @@
     margin: 5px 0;
   }
 }
+.nav-button {
+  background-color: #007bff; /* Blue background for the button */
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  color: #fff; /* White text color */
+  cursor: pointer;
+  
+}
+
+/* .nav-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+} */
+
+
+/* .nav-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); 
+} */

@@ -1,27 +1,76 @@
-/* ResultDetail.css */
-.result-detail-container {
-    margin: 20px;
-}
-
-.result-detail-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.result-detail-table th,
-.result-detail-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.result-detail-table th {
-    background-color: #f2f2f2;
-}
-
-.correct {
+.correct-choice {
     color: green;
+    font-weight: bold;
 }
 
-.incorrect {
+.incorrect-choice {
     color: red;
+}
+
+.choice-item {
+    margin: 5px 0;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.test-result-container {
+    font-family: Arial, sans-serif;
+    max-width: 100%;
+    margin: 20px auto;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.test-result-container h2 {
+    font-size: 24px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: x-large;
+    margin-bottom: 20px;
+    font-weight: bolder;
+    color: #333;
+}
+
+
+.question-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.choices-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.choice-item {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.correct-choice {
+    color: green;
+    font-weight: bold;
+    background-color: #e8f5e9;
+}
+
+.incorrect-choice {
+    color: red;
+    background-color: #ffebee;
 }

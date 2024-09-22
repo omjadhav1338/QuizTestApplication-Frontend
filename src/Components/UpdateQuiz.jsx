@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../Styles/AddQuiz.css';
 
@@ -9,7 +10,6 @@ const UpdateQuiz = () => {
   const [quiz, setQuiz] = useState({
     question: '',
     subject: '',
-    questionType: 'Single Answer',
     choices: [''],
     correctChoice: ['']
   });
@@ -117,13 +117,26 @@ const UpdateQuiz = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.put(`http://localhost:8080/api/quizzes/update-quiz/${id}`, quiz);
-      alert('Quiz updated successfully!');
-      navigate('/admin/all-quizzes');
-    } catch (error) {
-      console.error('There was an error updating the quiz!', error);
-    }
+
+    // Display SweetAlert2 confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to update this quiz?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'No, cancel'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.put(`http://localhost:8080/api/quizzes/update-quiz/${id}`, quiz);
+          Swal.fire('Updated!', 'Quiz has been updated successfully.', 'success');
+          navigate('/admin/all-quizzes');
+        } catch (error) {
+          Swal.fire('Error!', 'There was an error updating the quiz.', 'error');
+        }
+      }
+    });
   };
 
   return (
@@ -174,19 +187,6 @@ const UpdateQuiz = () => {
             </button>
           </div>
         )}
-        <div className="form-group">
-          <label className="form-label">Question Type:</label>
-          <select
-            name="questionType"
-            className="form-select"
-            value={quiz.questionType}
-            onChange={handleChange}
-            required
-          >
-            <option value="Single Answer">Single Answer</option>
-            <option value="Multiple Answer">Multiple Answer</option>
-          </select>
-        </div>
         <div className="form-group">
           <label className="form-label">Choices:</label>
           {quiz.choices.map((choice, index) => (
