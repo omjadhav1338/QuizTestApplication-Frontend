@@ -40,7 +40,7 @@ function SendEmail() {
           cancelButtonText: 'OK'
         }).then((result) => {
           if (result.isConfirmed) {
-            navigate('/student 2323-signin')
+            navigate('/student-signin')
             window.open(`https://mail.google.com/mail/u/${email}`, '_blank');
           }
         });

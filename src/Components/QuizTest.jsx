@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "../Styles/QuizTest.css";
 import { toast } from 'react-toastify';
-import Swal from 'sweetalert2'; // Import SweetAlert
+import Swal from 'sweetalert2';
 
 function QuizTest() {
     const location = useLocation();

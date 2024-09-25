@@ -12,7 +12,7 @@ const AdminLogin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email === 'oj740453@gmail.com' && password === '123') {
+    if (email === 'admin1338@gmail.com' && password === 'Admin@123') {
       toast.success("Welcome Admin, Logged in successfully", {
         autoClose: 3000,
       });

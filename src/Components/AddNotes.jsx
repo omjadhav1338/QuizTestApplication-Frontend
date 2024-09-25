@@ -14,7 +14,7 @@ const AddNotes = () => {
     e.preventDefault();
 
     const confirmation = await Swal.fire({
-      title: 'Confirm Submission',
+      title: 'Confirm',
       text: "Are you sure you want to add this note?",
       icon: 'warning',
       showCancelButton: true,
